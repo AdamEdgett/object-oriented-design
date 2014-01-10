@@ -44,7 +44,9 @@ public class MySet
     public static MySet insert(MySet myset, Long num)
     {
         if(!myset.content.contains(num))
+        {
             myset.content.add(num);
+        }
         return myset;
     }
 
@@ -94,7 +96,9 @@ public class MySet
         for(Long l : subset.content)
         {
             if(!MySet.contains(set, l))
+            {
                 return false;
+            }
         }
         return true;
     }
@@ -142,7 +146,9 @@ public class MySet
         for(Long l : set2.content)
         {
             if(MySet.contains(set1, l))
+            {
                 ret = MySet.insert(ret, l);
+            }
         }
         return ret;
     }
@@ -180,7 +186,9 @@ public class MySet
     public boolean equals(Object obj)
     {
         if(obj == null)
+        {
             return false;
+        }
         if(obj.getClass().isInstance(MySet.class))
         {
             MySet objSet = (MySet) obj;
