@@ -1,37 +1,81 @@
 import java.util.ArrayList;
 /**
- * Object Oriented Design
- * Assignment 1
+ * MySet represents a set of Longs
  *
  * @author Adam Edgett
  * @date 1/14/14
+ * @version 1.0
  */
-public class MySet
-{
-    // ArrayList of numbers (Long) in set
-    private ArrayList<Long> content;
+public abstract class MySet {
+    /**
+     * Returns the size of this MySet
+     *
+     * @return the size of this MySet
+     */
+    abstract int size();
 
-    // getter for content
-    public ArrayList<Long> getContent()
-    {
-        return this.content;
-    }
+    /**
+     * Returns if this MySet is empty
+     *
+     * @return if this MySet is empty
+     */
+    abstract boolean isEmpty();
 
-    // setter for content
-    public void setContent(ArrayList<Long> content)
-    {
-        this.content = content;
-    }
+    /**
+     * Returns if this MySet contains the given Long
+     *
+     * @param num the Long to check for
+     * @return if this MySet contains the given Long
+     */
+    abstract boolean contains(Long num);
+
+    /**
+     * Returns if the given MySet is a subset of this MySet
+     *
+     * @param myset the subset to check for
+     * @return if the given MySet is a subset of this MySet
+     */
+    abstract boolean isSubset(MySet myset);
+
+    /**
+     * Removes the given Long from this MySet
+     * @param num the Long to remove
+     * @return the MySet with the Long removed
+     */
+    abstract MySet remove(Long num);
+
+    /**
+     * Joins the given MySet with this MySet
+     *
+     * @param myset the MySet to join
+     * @return the resulting MySet
+     */
+    abstract MySet join(MySet myset);
+
+    /**
+     * Returns the intersection of the this MySet with the given MySet
+     *
+     * @param myset the MySet to intersect
+     * @return the resulting intersecting MySet
+     */
+    abstract MySet intersect(MySet myset);
+
+    /**
+     * Replaces a Long with another in this MySet
+     *
+     * @param orig the number to be replaced
+     * @param repl the number to replace
+     * @return the modified MySet
+     */
+    abstract MySet replace(Long orig, Long repl);
 
     /**
      * Returns an empty set
      *
      * @return MySet
      */
-    public static MySet empty()
-    {
-        MySet empty = new MySet();
-        return empty;
+    public static MySet empty() {
+        return new Empty();
     }
 
     /**
@@ -41,13 +85,8 @@ public class MySet
      * @param num the Long to be inserted
      * @return the modified MySet with the new Long added
      */
-    public static MySet insert(MySet myset, Long num)
-    {
-        if(!myset.content.contains(num))
-        {
-            myset.content.add(num);
-        }
-        return myset;
+    public static MySet insert(MySet myset, Long num) {
+        return new Insert(myset, num);
     }
 
     /**
@@ -56,9 +95,8 @@ public class MySet
      * @param myset the MySet to check the size of
      * @return the size of the MySet
      */
-    public static int size(MySet myset)
-    {
-        return myset.content.size();
+    public static int size(MySet myset) {
+        return myset.size();
     }
 
     /**
@@ -67,9 +105,8 @@ public class MySet
      * @param myset the MySet to check if empty
      * @return if the MySet is empty
      */
-    public static boolean isEmpty(MySet myset)
-    {
-        return myset.content.size() == 0;
+    public static boolean isEmpty(MySet myset) {
+        return myset.isEmpty();
     }
 
     /**
@@ -79,9 +116,8 @@ public class MySet
      * @param num the Long to check for
      * @return if the MySet contains the Long
      */
-    public static boolean contains(MySet myset, Long num)
-    {
-        return myset.content.contains(num);
+    public static boolean contains(MySet myset, Long num) {
+        return myset.contains(num);
     }
 
     /**
@@ -91,29 +127,19 @@ public class MySet
      * @param subset the subset to check for
      * @return if the set contains the subset
      */
-    public static boolean isSubset(MySet set, MySet subset)
-    {
-        for(Long l : subset.content)
-        {
-            if(!MySet.contains(set, l))
-            {
-                return false;
-            }
-        }
-        return true;
+    public static boolean isSubset(MySet set, MySet subset) {
+        return set.isSubset(subset);
     }
 
     /**
      * Removes the given Long from the MySet
      *
      * @param myset the MySet to remove from
-     * @param rem the number to remove
+     * @param num the number to remove
      * @return the modified MySet
      */
-    public static MySet remove(MySet myset, Long rem)
-    {
-        myset.content.remove(rem);
-        return myset;
+    public static MySet remove(MySet myset, Long num) {
+        return myset.remove(num);
     }
 
     /**
@@ -123,14 +149,8 @@ public class MySet
      * @param set2 the second MySet
      * @return the joined MySets
      */
-    public static MySet join(MySet set1, MySet set2)
-    {
-        MySet ret = set1;
-        for(Long l : set2.content)
-        {
-            ret = MySet.insert(ret, l);
-        }
-        return ret;
+    public static MySet join(MySet set1, MySet set2) {
+        return set1.join(set2);
     }
 
     /**
@@ -140,17 +160,8 @@ public class MySet
      * @param set2 the second MySet
      * @return the resulting intersecting MySet
      */
-    public static MySet intersect(MySet set1, MySet set2)
-    {
-        MySet ret = new MySet();
-        for(Long l : set2.content)
-        {
-            if(MySet.contains(set1, l))
-            {
-                ret = MySet.insert(ret, l);
-            }
-        }
-        return ret;
+    public static MySet intersect(MySet set1, MySet set2) {
+        return set1.intersect(set2);
     }
 
     /**
@@ -161,11 +172,8 @@ public class MySet
      * @param repl the number to replace
      * @return the modified MySet
      */
-    public static MySet replace(MySet myset, Long orig, Long repl)
-    {
-        myset = MySet.remove(myset, orig);
-        myset = MySet.insert(myset, repl);
-        return myset;
+    public static MySet replace(MySet myset, Long orig, Long repl) {
+        return myset.replace(orig, repl);
     }
 
     /**
@@ -175,7 +183,7 @@ public class MySet
      */
     public String toString()
     {
-        return "This set contains: " + this.content.toString();
+        return "This set contains: " + MySet.size(this) + " elements";
     }
 
     /**
@@ -189,19 +197,15 @@ public class MySet
         {
             return false;
         }
-        if(obj.getClass().isInstance(MySet.class))
+        if(obj instanceof MySet)
         {
             MySet objSet = (MySet) obj;
-            for(int i = 0; i < this.content.size(); i++)
-            {
-                if(this.content.get(i) != objSet.content.get(i))
-                {
-                    return false;
-                }
-            }
-            return true;
+            return this.hashCode() == obj.hashCode();
         }
-        return false;
+        else
+        {
+            return false;
+        }
     }
 
     /**
@@ -211,7 +215,7 @@ public class MySet
      */
     public int hashCode()
     {
-        return this.content.hashCode();
+        return 0;
     }
 }
 
