@@ -2,11 +2,12 @@
  * Empty represents a MySet with no Longs
  *
  * @author Adam Edgett
- * @date 1/14/14
- * @version 1.0
+ * @version 1/14/14
  */
 class Empty extends MySet {
-    // Constructor for Empty
+    /**
+     * Constructor for Empty
+     */
     Empty() {
 
     }
@@ -46,18 +47,17 @@ class Empty extends MySet {
      * @return if the set contains the subset
      */
     boolean isSubset(MySet myset) {
-        return false;
+        return true;
     }
 
     /**
      * Removes the given Long from the MySet
      *
      * @param num the number to remove
-     * @throws java.lang.RuntimeException
      * @return the modified MySet
      */
     MySet remove(Long num) {
-        throw new RuntimeException("Attempted to remove from an empty MySet");
+        return MySet.empty();
     }
 
     /**
@@ -85,10 +85,9 @@ class Empty extends MySet {
      *
      * @param orig the number to be replaced
      * @param repl the number to replace
-     * @throws java.lang.RuntimeException
      * @return the modified MySet
      */
     MySet replace(Long orig, Long repl) {
-        throw new RuntimeException("Attempted to replace in an empty MySet");
+        return MySet.empty();
     }
 }

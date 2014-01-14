@@ -3,8 +3,7 @@ import java.util.ArrayList;
  * MySet represents a set of Longs
  *
  * @author Adam Edgett
- * @date 1/14/14
- * @version 1.0
+ * @version 1/14/14
  */
 public abstract class MySet {
     /**
@@ -86,7 +85,12 @@ public abstract class MySet {
      * @return the modified MySet with the new Long added
      */
     public static MySet insert(MySet myset, Long num) {
-        return new Insert(myset, num);
+        if (!MySet.contains(myset, num)) {
+            return new Insert(myset, num);
+        }
+        else {
+            return myset;
+        }
     }
 
     /**
@@ -127,8 +131,8 @@ public abstract class MySet {
      * @param subset the subset to check for
      * @return if the set contains the subset
      */
-    public static boolean isSubset(MySet set, MySet subset) {
-        return set.isSubset(subset);
+    public static boolean isSubset(MySet subset, MySet set) {
+        return subset.isSubset(set);
     }
 
     /**
@@ -181,29 +185,27 @@ public abstract class MySet {
      *
      * @return the string representation of the MySet
      */
-    public String toString()
-    {
-        return "This set contains: " + MySet.size(this) + " elements";
+    public String toString() {
+        return "{...(This set contains "
+                + MySet.size(this)
+                + " elements)...}";
     }
 
     /**
      * Checks the equivalence of another object
      *
+     * @param obj the object to check equivalence with
      * @return whether the given object equals this MySet
      */
-    public boolean equals(Object obj)
-    {
-        if(obj == null)
-        {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        if(obj instanceof MySet)
-        {
+        if (obj instanceof MySet) {
             MySet objSet = (MySet) obj;
             return this.hashCode() == obj.hashCode();
         }
-        else
-        {
+        else {
             return false;
         }
     }
@@ -213,9 +215,8 @@ public abstract class MySet {
      *
      * @return the hash code of this MySet
      */
-    public int hashCode()
-    {
-        return 0;
+    public int hashCode() {
+        return MySet.size(this);
     }
 }
 
