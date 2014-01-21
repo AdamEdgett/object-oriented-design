@@ -1,8 +1,7 @@
-import java.util.ArrayList;
 /**
  * MySet represents a set of Longs
  *
- * @author Adam Edgett
+ * @author Adam Edgett edgett.a@husky.neu.edu
  * @version 1/14/14
  */
 public abstract class MySet {

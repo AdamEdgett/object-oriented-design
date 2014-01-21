@@ -1,7 +1,7 @@
 /**
  * Insert represents a non-empty MySet
  *
- * @author Adam Edgett
+ * @author Adam Edgett edgett.a@husky.neu.edu
  * @version 1/14/14
  */
 class Insert extends MySet {

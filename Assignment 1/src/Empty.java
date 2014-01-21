@@ -1,7 +1,7 @@
 /**
  * Empty represents a MySet with no Longs
  *
- * @author Adam Edgett
+ * @author Adam Edgett edgett.a@husky.neu.edu
  * @version 1/14/14
  */
 class Empty extends MySet {

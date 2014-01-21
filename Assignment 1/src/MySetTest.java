@@ -6,8 +6,8 @@ import static org.junit.Assert.*;
  * Tester class for the MySet class
  * Tests functionality of MySet
  *
- * @author Adam Edgett
- * @version 1/14/14.
+ * @author Adam Edgett edgett.a@husky.neu.edu
+ * @version 1/14/14
  */
 public class MySetTest {
     private MySet empty;
