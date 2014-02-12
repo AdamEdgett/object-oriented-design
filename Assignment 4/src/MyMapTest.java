@@ -11,11 +11,10 @@ import static org.junit.Assert.*;
  * Tests MyMap
  *
  * @author Adam Edgett edgett.a@husky.neu.edu
- * @version 1/31/14
+ * @version 2/11/14
  */
 public class MyMapTest {
     private MyMap<String, Integer> empty;
-    private MyMap<String, Integer> emptyComp;
     private MyMap<String, Integer> map1;
     private MyMap<String, Integer> map2;
     private MyMap<String, Integer> map2copy;
@@ -30,7 +29,6 @@ public class MyMapTest {
     @Before
     public void setUp() {
         empty = MyMap.empty();
-        emptyComp = MyMap.empty(new TestComparator());
         map1 = empty.include("one", 1);
         map2 = map1.include("two", 2);
         map2copy = map1.include("two", 2);
@@ -168,6 +166,7 @@ public class MyMapTest {
             assertNotNull(e);
         }
         Iterator<String> compIterator = map2.iterator(new TestComparator());
+        compIterator.hasNext();
     }
 
     /**

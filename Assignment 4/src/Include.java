@@ -1,12 +1,10 @@
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
 
 /**
  * Include represents an non-empty list of key-value pairs
  *
  * @author Adam Edgett edgett.a@husky.neu.edu
- * @version 1/31/14
+ * @version 2/11/14
  * @param <K> the type of the keys
  * @param <V> the type of the values
  */
@@ -26,6 +24,16 @@ public class Include<K, V> extends MyMap<K, V> {
         this.map = map;
         this.key = key;
         this.value = value;
+    }
+
+    /**
+     * Includes the given key value pair to this MyMap
+     * @param inclKey the new key
+     * @param inclValue the new value
+     * @return the new MyMap
+     */
+    public MyMap<K, V> include(K inclKey, V inclValue) {
+        return new Include<K, V>(this, inclKey, inclValue);
     }
 
     /**

@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 /**
  * The iterator class for MyMap
  * @author Adam Edgett edgett.a@husky.neu.edu
- * @version 1/31/14
+ * @version 2/11/14
  * @param <K> the type of the keys
  */
 public class MyMapIterator<K> implements Iterator<K> {

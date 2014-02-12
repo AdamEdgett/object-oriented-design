@@ -1,32 +1,23 @@
 import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  * EmptyMap represents an empty list of key-value pairs
  *
  * @author Adam Edgett edgett.a@husky.neu.edu
- * @version 1/31/14
+ * @version 2/11/14
  * @param <K> the type of the keys
  * @param <V> the type of the values
  */
 public class EmptyMap<K, V> extends MyMap<K, V> {
 
     /**
-     * Empty constructor for EmptyMap
-     * @param <K> the type of the keys
-     * @param <V> the type of the values
+     * Includes the given key value pair to this MyMap
+     * @param inclKey the new key
+     * @param inclValue the new value
+     * @return the new MyMap
      */
-    public <K, V> EmptyMap() {
-    }
-
-    /**
-     * Constructor for EmptyMap
-     * @param comparator the comparator to use
-     * @param <K> the type of the keys
-     * @param <V> the type of the values
-     */
-    public <K, V> EmptyMap(Comparator<? super K> comparator) {
-
+    public MyMap<K, V> include(K inclKey, V inclValue) {
+        return new Include<K, V>(this, inclKey, inclValue);
     }
 
     /**

@@ -7,7 +7,7 @@ import java.util.Iterator;
  * MyMap represents a list of key-value pairs
  *
  * @author Adam Edgett edgett.a@husky.neu.edu
- * @version 1/31/14
+ * @version 2/11/14
  * @param <K> the type of the keys
  * @param <V> the type of the values
  */
@@ -17,27 +17,27 @@ public abstract class MyMap<K, V> implements Iterable<K> {
      * Checks to see if the MyMap is empty
      * @return if the MyMap is empty
      */
-    abstract boolean isEmpty();
+    public abstract boolean isEmpty();
 
     /**
      * Returns the size of the MyMap
      * @return the size of the MyMap
      */
-    abstract int size();
+    public abstract int size();
 
     /**
      * Checks if the MyMap contains the given key
      * @param contKey the key to check for
      * @return if the MyMap contains the key
      */
-    abstract boolean containsKey(K contKey);
+    public abstract boolean containsKey(K contKey);
 
     /**
      * Gets the value at the given key in the MyMap
      * @param getKey the key to get the value for
      * @return the value
      */
-    abstract V get(K getKey);
+    public abstract V get(K getKey);
 
     /**
      * Sets the value at the given key in the MyMap
@@ -45,13 +45,13 @@ public abstract class MyMap<K, V> implements Iterable<K> {
      * @param setVal the value to set
      * @return the modified MyMap
      */
-    abstract MyMap<K, V> set(K setKey, V setVal);
+    public abstract MyMap<K, V> set(K setKey, V setVal);
 
     /**
      * Gets the keys for this MyMap
      * @return the keys
      */
-    public abstract ArrayList<K> getKeys();
+    abstract ArrayList<K> getKeys();
 
     /**
      * Returns an empty MyMap
@@ -71,7 +71,7 @@ public abstract class MyMap<K, V> implements Iterable<K> {
      * @return an empty MyMap
      */
     public static <K, V> MyMap<K, V> empty(Comparator<? super K> comparator) {
-        return new EmptyMap<K, V>(comparator);
+        return MyTreeMap.empty(comparator);
     }
 
     /**
@@ -80,9 +80,7 @@ public abstract class MyMap<K, V> implements Iterable<K> {
      * @param value the new value
      * @return the new MyMap
      */
-    public MyMap<K, V> include(K key, V value) {
-        return new Include<K, V>(this, key, value);
-    }
+    abstract MyMap<K, V> include(K key, V value);
 
     /**
      * Returns the MyMap in String format
@@ -99,7 +97,7 @@ public abstract class MyMap<K, V> implements Iterable<K> {
      */
     @SuppressWarnings(value = "unchecked")
     public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof MyMap)) {
+        if (!(obj instanceof MyMap)) {
             return false;
         }
         MyMap<K, V> objMap = (MyMap<K, V>) obj;
