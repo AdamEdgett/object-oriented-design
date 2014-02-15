@@ -43,18 +43,20 @@ public class TreeInclude<K, V> extends MyTreeMap<K, V> {
      * @return the new MyTreeMap
      */
     public MyTreeMap<K, V> include(K inclKey, V inclValue) {
-        switch(comparator.compare(this.key, inclKey)) {
-            case 0:
-                return new TreeInclude<K, V>(this.left, this.right,
-                        this.key, inclValue, comparator);
-            case -1:
-                return new TreeInclude<K, V>(
-                        this.left.include(inclKey, inclValue),
-                        this.right, this.key, this.value, this.comparator);
-            default:
-                return new TreeInclude<K, V>(this.left,
-                        this.right.include(inclKey, inclValue),
-                        this.key, this.value, this.comparator);
+        int c = comparator.compare(this.key, inclKey);
+        if (c == 0) {
+            return new TreeInclude<K, V>(this.left, this.right,
+                this.key, inclValue, comparator);
+        }
+        else if (c <= -1) {
+            return new TreeInclude<K, V>(
+                this.left.include(inclKey, inclValue),
+                this.right, this.key, this.value, this.comparator);
+        }
+        else {
+            return new TreeInclude<K, V>(this.left,
+                this.right.include(inclKey, inclValue),
+                this.key, this.value, this.comparator);
         }
     }
 
@@ -80,13 +82,15 @@ public class TreeInclude<K, V> extends MyTreeMap<K, V> {
      * @return if the MyTreeMap contains the key
      */
     public boolean containsKey(K contKey) {
-        switch(this.comparator.compare(this.key, contKey)) {
-            case 0:
-                return true;
-            case -1:
-                return this.left.containsKey(contKey);
-            default:
-                return this.right.containsKey(contKey);
+        int c = comparator.compare(this.key, contKey);
+        if (c == 0) {
+            return true;
+        }
+        else if (c <= -1) {
+            return this.left.containsKey(contKey);
+        }
+        else {
+            return this.right.containsKey(contKey);
         }
     }
 
@@ -96,13 +100,15 @@ public class TreeInclude<K, V> extends MyTreeMap<K, V> {
      * @return the value
      */
     public V get(K getKey) {
-        switch(this.comparator.compare(this.key, getKey)) {
-            case 0:
-                return this.value;
-            case -1:
-                return this.left.get(getKey);
-            default:
-                return this.right.get(getKey);
+        int c = comparator.compare(this.key, getKey);
+        if (c == 0) {
+            return this.value;
+        }
+        else if (c <= -1) {
+            return this.left.get(getKey);
+        }
+        else {
+            return this.right.get(getKey);
         }
     }
 
@@ -113,17 +119,19 @@ public class TreeInclude<K, V> extends MyTreeMap<K, V> {
      * @return the modified MyTreeMap
      */
     public MyTreeMap<K, V> set(K setKey, V setVal) {
-        switch(this.comparator.compare(this.key, setKey)) {
-            case 0:
-                return new TreeInclude<K, V>(this.left, this.right,
-                        this.key, setVal, this.comparator);
-            case -1:
-                return new TreeInclude<K, V>(this.left.set(setKey, setVal),
-                        this.right, this.key, this.value, this.comparator);
-            default:
-                return new TreeInclude<K, V>(this.left,
-                        this.right.set(setKey, setVal),
-                        this.key, this.value, this.comparator);
+        int c = comparator.compare(this.key, setKey);
+        if (c == 0) {
+            return new TreeInclude<K, V>(this.left, this.right,
+                this.key, setVal, this.comparator);
+        }
+        else if (c <= -1) {
+            return new TreeInclude<K, V>(this.left.set(setKey, setVal),
+                this.right, this.key, this.value, this.comparator);
+        }
+        else {
+            return new TreeInclude<K, V>(this.left,
+                this.right.set(setKey, setVal),
+                this.key, this.value, this.comparator);
         }
     }
 
