@@ -4,7 +4,7 @@
  * @author Adam Edgett edgett.a@husky.neu.edu
  * @version 1/21/14
  */
-public class Add extends MyList {
+public class AddList extends MyList {
     private MyList list;
     private String value;
 
@@ -14,7 +14,7 @@ public class Add extends MyList {
      * @param list the nested MyList
      * @param value the top-most value
      */
-    Add(MyList list, String value) {
+    AddList(MyList list, String value) {
         this.list = list;
         this.value = value;
     }
@@ -49,11 +49,11 @@ public class Add extends MyList {
      */
     MyList set(int index, String setVal) {
         if (index == 0) {
-            return new Add(this.list, setVal);
+            return new AddList(this.list, setVal);
         }
         else {
             MyList setList =  MyList.set(this.list, index - 1, setVal);
-            return new Add(setList, this.value);
+            return new AddList(setList, this.value);
         }
     }
 
