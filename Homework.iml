@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/MyMap/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MyTreeMap/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MyTreeMap/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MyRedBlackTree/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
