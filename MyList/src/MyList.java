@@ -55,7 +55,7 @@ public abstract class MyList {
      * @return the new MyList
      */
     public static MyList add(MyList list, String str) {
-        return new Add(list, str);
+        return new AddList(list, str);
     }
 
     /**
