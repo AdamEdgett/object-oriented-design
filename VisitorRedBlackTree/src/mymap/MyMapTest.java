@@ -23,6 +23,7 @@ public class MyMapTest {
     private MyMap<String, Integer> map3;
     private MyMap<String, Integer> map4;
     private MyMap<String, Integer> map5;
+    private MyMap<String, Integer> map5plus;
 
 
     /**
@@ -38,6 +39,9 @@ public class MyMapTest {
         map4 = map3.include("three", 4);
         map4 = map4.include("three", 3);
         map5 = map3.include("three", 3);
+        map5plus = empty.include("one", 2);
+        map5plus = map5plus.include("two", 4);
+        map5plus = map5plus.include("three", 4);
     }
 
     /**
@@ -169,6 +173,94 @@ public class MyMapTest {
         }
         Iterator<String> compIterator = map2.iterator(new TestComparator());
         compIterator.hasNext();
+    }
+
+    /**
+     * Tests accept and acceptRBT
+     */
+    @Test
+    @SuppressWarnings(value = "unchecked")
+    public void testAccept() throws Exception {
+        TestMyMapVisitor testMyMapVisitor = new TestMyMapVisitor();
+        assertEquals(((MyMap) empty).accept(testMyMapVisitor), empty);
+        assertEquals(((MyMap) map2).accept(testMyMapVisitor),
+                ((MyMap) map2copy).accept(testMyMapVisitor));
+        assertEquals(((MyMap) map5).accept(testMyMapVisitor),
+                map5plus);
+
+        TestRBTVisitor<String, Integer> testRBTVisitor = new TestRBTVisitor
+                <String, Integer>();
+        try {
+            empty.acceptRBT(testRBTVisitor);
+        }
+        catch (UnsupportedOperationException e) {
+            assertNotNull(e);
+        }
+        try {
+            map2.acceptRBT(testRBTVisitor);
+        }
+        catch (UnsupportedOperationException e) {
+            assertNotNull(e);
+        }
+    }
+
+    /**
+     * Test MyMapVisitor
+     * adds 1 to each value
+     */
+    private class TestMyMapVisitor implements MyMapVisitor<String, Integer> {
+        /**
+         * @param k
+         *            given key
+         * @param v
+         *            given value
+         * @return a suitable new value
+         */
+        public Integer visit(String k, Integer v) {
+            return v + 1;
+        }
+    }
+
+    /**
+     * Test RBTVisitor
+     * Returns size
+     */
+    private class TestRBTVisitor<K, V> implements RBTVisitor<K, V, Integer> {
+        /**
+         * The method for the empty tree
+         *
+         * @param comp
+         *            the Comparator for the whole tree
+         * @param color
+         *            the color of the node, which should be "RED" or "BLACK"
+         * @return some value of the type R
+         */
+        public Integer visitEmpty(Comparator<? super K> comp, String color) {
+            return 0;
+        }
+
+        /**
+         * The method for the node of the tree
+         *
+         * @param comp
+         *            the Comparator for the whole tree
+         * @param color
+         *            the color of the node, which should be "RED" or "BLACK"
+         * @param k
+         *            the key for the node
+         * @param v
+         *            the value for the node
+         * @param left
+         *            the left subtree of the node
+         * @param right
+         *            the right subtree of the node
+         * @return some value of the type R
+         */
+        public Integer visitNode(Comparator<? super K> comp, String color,
+                                 K k, V v,
+                                 MyMap<K, V> left, MyMap<K, V> right) {
+            return 1 + left.acceptRBT(this) + right.acceptRBT(this);
+        }
     }
 
     /**
