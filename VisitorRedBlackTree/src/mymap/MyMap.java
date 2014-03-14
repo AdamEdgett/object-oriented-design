@@ -9,7 +9,7 @@ import java.util.Iterator;
  * MyMap represents a list of key-value pairs
  *
  * @author Adam Edgett edgett.a@husky.neu.edu
- * @version 2/28/14
+ * @version 3/14/14
  * @param <K> the type of the keys
  * @param <V> the type of the values
  */
@@ -134,6 +134,11 @@ public abstract class MyMap<K, V> implements Iterable<K> {
         return new MyMapIterator<K>(keys);
     }
 
+    /**
+     * Accepts a visitor to a MyMap
+     * @param mapVisitor the given visitor
+     * @return the result of the visit operation
+     */
     public abstract MyMap<K, V> accept(MyMapVisitor mapVisitor);
 
     /**

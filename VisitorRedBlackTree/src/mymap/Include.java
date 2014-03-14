@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Include represents an non-empty list of key-value pairs
  *
  * @author Adam Edgett edgett.a@husky.neu.edu
- * @version 2/28/14
+ * @version 3/14/14
  * @param <K> the type of the keys
  * @param <V> the type of the values
  */
@@ -130,8 +130,14 @@ public class Include<K, V> extends MyMap<K, V> {
         return hashCode;
     }
 
+    /**
+     * Accepts a visitor to a MyMap
+     * @param mapVisitor the given visitor
+     * @return the result of the visit operation
+     */
+    @SuppressWarnings(value = "unchecked")
     public MyMap<K, V> accept(MyMapVisitor mapVisitor) {
-        MyMap<K,V> visitMap = MyMap.empty();
+        MyMap<K, V> visitMap = MyMap.empty();
         for (K subKey : this.getKeys()) {
             V visitValue = (V) mapVisitor.visit(subKey, this.get(subKey));
             visitMap = visitMap.include(subKey, visitValue);

@@ -8,7 +8,7 @@ import java.util.Comparator;
  * in a tree format for increased performance
  *
  * @author Adam Edgett edgett.a@husky.neu.edu
- * @version 2/28/14
+ * @version 3/14/14
  * @param <K> the type of the keys
  * @param <V> the type of the values
  */
@@ -309,6 +309,12 @@ public class TreeInclude<K, V> extends MyTreeMap<K, V> {
         );
     }
 
+    /**
+     * Accepts a visitor to a MyMap
+     * @param mapVisitor the given visitor
+     * @return the result of the visit operation
+     */
+    @SuppressWarnings(value = "unchecked")
     public MyMap<K, V> accept(MyMapVisitor mapVisitor) {
         MyTreeMap<K, V> visitedLeft =
                 (MyTreeMap) this.left.accept(mapVisitor);
@@ -319,6 +325,21 @@ public class TreeInclude<K, V> extends MyTreeMap<K, V> {
                 visitedValue, this.comparator, this.color);
     }
 
+    /**
+     * Method that accepts a visitor that produces a value of
+     * the type R
+     *
+     * @param rbtVisitor
+     *            the given visitor
+     * @param <R>
+     *            the type of elements returned by method
+     * @return the result of calling the appropriate visit
+     *            method from the given the visitor
+     *
+     * @throws UnsupportedOperationException
+     *             if this is not implemented as a Red-Black
+     *             Tree
+     */
     public <R> R acceptRBT(RBTVisitor<K, V, R> rbtVisitor) {
         return rbtVisitor.visitNode(this.comparator, this.color.toString(),
                 this.key, this.value, this.left, this.right);

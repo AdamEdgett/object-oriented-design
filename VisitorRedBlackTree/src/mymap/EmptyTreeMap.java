@@ -7,7 +7,7 @@ import java.util.Comparator;
  * EmptyMap represents an empty list of key-value pairs
  *
  * @author Adam Edgett edgett.a@husky.neu.edu
- * @version 2/28/14
+ * @version 3/14/14
  * @param <K> the type of the keys
  * @param <V> the type of the values
  */
@@ -147,10 +147,30 @@ public class EmptyTreeMap<K, V> extends MyTreeMap<K, V> {
         throw new RuntimeException("Can't change empty color");
     }
 
+    /**
+     * Accepts a visitor to a MyMap
+     * @param mapVisitor the given visitor
+     * @return the result of the visit operation
+     */
     public MyMap<K, V> accept(MyMapVisitor mapVisitor) {
         return this;
     }
 
+    /**
+     * Method that accepts a visitor that produces a value of
+     * the type R
+     *
+     * @param rbtVisitor
+     *            the given visitor
+     * @param <R>
+     *            the type of elements returned by method
+     * @return the result of calling the appropriate visit
+     *            method from the given the visitor
+     *
+     * @throws UnsupportedOperationException
+     *             if this is not implemented as a Red-Black
+     *             Tree
+     */
     public <R> R acceptRBT(RBTVisitor<K, V, R> rbtVisitor) {
         return rbtVisitor.visitEmpty(this.comparator, this.color.toString());
     }

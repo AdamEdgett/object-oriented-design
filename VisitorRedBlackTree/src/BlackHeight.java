@@ -4,7 +4,13 @@ import mymap.RBTVisitor;
 import java.util.Comparator;
 
 /**
- * Created by Adam on 3/13/14.
+ * Visitor that returns the black height of the tree
+ * which is the number of non-empty black node from the root to any empty node
+ *
+ * @param <K> the key type
+ * @param <V> the value type
+ * @author Adam Edgett edgett.a@husky.neu.edu
+ * @version 3/14/14
  */
 public class BlackHeight<K, V> implements RBTVisitor<K, V, Integer> {
     /**
@@ -38,8 +44,8 @@ public class BlackHeight<K, V> implements RBTVisitor<K, V, Integer> {
      * @return some value of the type R
      */
     public Integer visitNode(Comparator<? super K> comp, String color, K k, V v,
-                                        MyMap<K, V> left, MyMap<K, V> right){
-        if (color == "BLACK") {
+            MyMap<K, V> left, MyMap<K, V> right) {
+        if (color.equals("BLACK")) {
             return 1 + right.acceptRBT(this);
         }
         else {

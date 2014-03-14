@@ -6,7 +6,7 @@ import java.util.Comparator;
  * MyTreeMap represents a list of key-value pairs
  *
  * @author Adam Edgett edgett.a@husky.neu.edu
- * @version 2/28/14
+ * @version 3/14/14
  * @param <K> the type of the keys
  * @param <V> the type of the values
  */
@@ -93,6 +93,21 @@ public abstract class MyTreeMap<K, V> extends MyMap<K, V> {
     protected abstract MyTreeMap<K, V> includeAndBalance(
             K inclKey, V inclValue);
 
+    /**
+     * Method that accepts a visitor that produces a value of
+     * the type R
+     *
+     * @param rbtVisitor
+     *            the given visitor
+     * @param <R>
+     *            the type of elements returned by method
+     * @return the result of calling the appropriate visit
+     *            method from the given the visitor
+     *
+     * @throws UnsupportedOperationException
+     *             if this is not implemented as a Red-Black
+     *             Tree
+     */
     public abstract <R> R acceptRBT(RBTVisitor<K, V, R> rbtVisitor);
 }
 

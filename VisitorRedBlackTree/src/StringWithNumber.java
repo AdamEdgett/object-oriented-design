@@ -1,7 +1,10 @@
 import mymap.MyMapVisitor;
 
 /**
- * Created by Adam on 3/13/14.
+ * Visitor that returns v followed by k with a space in between
+ *
+ * @author Adam Edgett edgett.a@husky.neu.edu
+ * @version 3/14/14
  */
 public class StringWithNumber implements MyMapVisitor<Integer, String> {
     /**

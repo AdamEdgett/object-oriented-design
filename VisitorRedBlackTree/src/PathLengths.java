@@ -5,9 +5,17 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
- * Created by Adam on 3/13/14.
+ * Visitor that returns an ArrayList of the lengths
+ * of the paths from the root to each empty
+ * does not include empty nodes
+ *
+ * @param <K> the key type
+ * @param <V> the value type
+ * @author Adam Edgett edgett.a@husky.neu.edu
+ * @version 3/14/14
  */
-public class PathLengths<K, V> implements RBTVisitor<K, V, ArrayList> {
+public class PathLengths<K, V>
+        implements RBTVisitor<K, V, ArrayList<Integer>> {
     /**
      * The method for the empty tree
      *
@@ -17,8 +25,9 @@ public class PathLengths<K, V> implements RBTVisitor<K, V, ArrayList> {
      *            the color of the node, which should be "RED" or "BLACK"
      * @return some value of the type R
      */
-    public ArrayList<Integer> visitEmpty(Comparator<? super K> comp, String color) {
-        return new ArrayList<Integer>() {{ add (0); }};
+    public ArrayList<Integer> visitEmpty(
+            Comparator<? super K> comp, String color) {
+        return new ArrayList<Integer>() { { add(0); } };
     }
 
     /**
@@ -38,8 +47,9 @@ public class PathLengths<K, V> implements RBTVisitor<K, V, ArrayList> {
      *            the right subtree of the node
      * @return some value of the type R
      */
-    public ArrayList<Integer> visitNode(Comparator<? super K> comp, String color, K k, V v,
-                       MyMap<K, V> left, MyMap<K, V> right){
+    public ArrayList<Integer> visitNode(
+            Comparator<? super K> comp, String color, K k, V v,
+            MyMap<K, V> left, MyMap<K, V> right) {
         ArrayList<Integer> paths = new ArrayList<Integer>();
         ArrayList<Integer> leftPaths = left.acceptRBT(this);
         for (Integer length : leftPaths) {

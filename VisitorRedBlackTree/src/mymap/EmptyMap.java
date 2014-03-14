@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * EmptyMap represents an empty list of key-value pairs
  *
  * @author Adam Edgett edgett.a@husky.neu.edu
- * @version 2/28/14
+ * @version 3/14/14
  * @param <K> the type of the keys
  * @param <V> the type of the values
  */
@@ -82,6 +82,11 @@ public class EmptyMap<K, V> extends MyMap<K, V> {
         return 0;
     }
 
+    /**
+     * Accepts a visitor to a MyMap
+     * @param mapVisitor the given visitor
+     * @return the result of the visit operation
+     */
     public MyMap<K, V> accept(MyMapVisitor mapVisitor) {
         return this;
     }
