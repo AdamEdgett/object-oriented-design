@@ -116,7 +116,11 @@ public class VisitorTest {
         assertTrue(treeMap3.acceptRBT(pathLengths).equals(
                 resultMyMap.acceptRBT(pathLengths)
         ));
-        assertTrue(treeMap3.acceptRBT(pathLengths).contains(2));
+
+        for (int path : treeMap3.acceptRBT(pathLengths)) {
+            assertTrue(path >= 0 &&
+                path < treeMap3.size());
+        }
 
         try {
             map3.acceptRBT(pathLengths);
@@ -142,7 +146,8 @@ public class VisitorTest {
         assertTrue(treeMap3.acceptRBT(blackHeight).equals(
                 resultMyMap.acceptRBT(blackHeight)
         ));
-        assertTrue(treeMap3.acceptRBT(blackHeight).equals(2));
+        assertTrue(treeMap3.acceptRBT(blackHeight) > 0 &&
+                treeMap3.acceptRBT(blackHeight) < treeMap3.size());
 
         try {
             map3.acceptRBT(blackHeight);
