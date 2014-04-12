@@ -1,0 +1,13 @@
+STUDENT_GRADES
+iaartinez
+Sophia
+Martinez
+Scott
+2014
+----
+Opening Assignment	6.0
+A2	51.0
+First Group Project	79.0
+Test	50.0
+----
+CURRENT GRADE	51.0162601626016

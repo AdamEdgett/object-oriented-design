@@ -1,0 +1,21 @@
+GRADEBOOK
+					Opening Assignment	A2
+					10	100
+					1	5
+abetaylor	Isabella	Taylor	Baker	2016	8	71
+abethes	Elizabeth	White Jones	Nelson	2014	6	90
+acit	Jacob	Smith	Scott	2014	8	79
+ahrown	Noah	Brown	Adams	2017	8	85
+amller	Liam	Miller	Scott	2014	5	74
+are	Emily Ann	Moore	Scott	2014	9	58
+enwilson	Aiden	Wilson	Nelson	2014	8	83
+gailarti	Abigail	Martin	Green	2015	7	79
+marson	Emma	Anderson	Green	2015	7	81
+michaeia	Michael	Garcia	Baker	2016	5	100
+mijacks	Mia	Jackson	Baker	2016	5	50
+oliviaas	Olivia	Thomas	Adams	2017	6	94
+onon	Mason	Johnson	Green	2015	10	81
+onson	Madison	Thompson	Adams	2017	9	89
+thms	Ethan	Williams	Baker	2016	8	89
+vaern	Ava	Hernandez	Nelson	2014	6	91
+ydenavi	Jayden	Davis	Green	2015	10	97

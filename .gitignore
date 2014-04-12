@@ -1,5 +1,8 @@
+*.pdf
 *.docx
 *.xlsx
+*.png
+*.dia
 *output.csv
 
 # Mobile Tools for Java (J2ME)

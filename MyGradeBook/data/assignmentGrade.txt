@@ -1,0 +1,31 @@
+ASSIGNMENT_GRADES
+Test
+100
+25
+----
+abetaylor	65.0
+abethes	88.0
+acit	85.0
+ahrown	57.0
+amller	82.0
+are	68.0
+enwilson	97.0
+gailarti	73.0
+iaartinez	50.0
+illines	79.0
+marson	54.0
+michaeia	58.0
+mijacks	83.0
+oliviaas	61.0
+onon	51.0
+onson	71.0
+thms	92.0
+vaern	83.0
+xaod	91.0
+ydenavi	84.0
+----
+STATS
+Average	73.6
+Median	76.0
+Max	97.0
+Min	50.0
